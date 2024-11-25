@@ -1,0 +1,1 @@
+docker-compose -f "$SERVICES_PATH/crossfire/docker-compose.yml" up -d --build
