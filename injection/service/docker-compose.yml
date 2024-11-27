@@ -1,0 +1,14 @@
+version: '3'
+services:
+    web:
+        build:
+            context: ./web
+            dockerfile: Dockerfile
+        ports:
+            - "9009:80"
+    webapp:
+        build:
+            context: ./webapp
+            dockerfile: Dockerfile
+        ports:
+            - "5000:5000"
