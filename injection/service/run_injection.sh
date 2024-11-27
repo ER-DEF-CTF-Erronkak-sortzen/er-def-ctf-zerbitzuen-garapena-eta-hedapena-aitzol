@@ -1,0 +1,1 @@
+docker-compose -f "$SERVICES_PATH/injection/docker-compose.yml" up -d --build

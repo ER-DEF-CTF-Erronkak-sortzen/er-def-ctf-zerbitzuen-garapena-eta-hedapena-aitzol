@@ -1,6 +1,3 @@
-sarrera
-liburutegia
-bideadago
-eseseatxe
 pasapasa
-saltoka
+crossfire
+injection
