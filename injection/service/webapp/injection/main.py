@@ -25,9 +25,9 @@ def loginAPI():
         cur = g.db.execute("SELECT * FROM employees WHERE username = '%s' AND password = '%s'" %(uname, hash_pass(pword)))
         if cur.fetchone():
             # get flag from sistem
-            with open("/flag.txt", "r") as f:
+            with open("/tmp/flag.txt", "r") as f:
                 flag = f.read()
-            result = {'flag': flag}
+            result = {'flag': flag, 'status': 'success'}
         else:
             result = {'status': 'fail'}
         g.db.close()
