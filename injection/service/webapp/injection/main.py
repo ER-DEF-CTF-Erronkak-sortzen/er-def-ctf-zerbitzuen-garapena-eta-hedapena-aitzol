@@ -25,9 +25,12 @@ def loginAPI():
         cur = g.db.execute("SELECT * FROM employees WHERE username = '%s' AND password = '%s'" %(uname, hash_pass(pword)))
         if cur.fetchone():
             # get flag from sistem
-            with open("/tmp/flag.txt", "r") as f:
-                flag = f.read()
-            result = {'flag': flag, 'status': 'success'}
+            try:
+                with open("/tmp/flag.txt", "r") as f:
+                    flag = f.read()
+                result = {'flag': flag, 'status': 'success'}
+            except FileNotFoundError as e:
+                result = {'status': 'fail', 'message': 'Flag not set', 'flag':''}
         else:
             result = {'status': 'fail'}
         g.db.close()
