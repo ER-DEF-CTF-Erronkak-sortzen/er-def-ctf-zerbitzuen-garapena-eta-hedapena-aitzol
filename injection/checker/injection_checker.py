@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 
 from ctf_gameserver import checkerlib
 import logging
