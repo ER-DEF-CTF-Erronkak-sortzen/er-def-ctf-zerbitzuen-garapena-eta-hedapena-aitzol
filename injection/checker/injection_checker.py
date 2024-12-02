@@ -56,6 +56,16 @@ class MyChecker(checkerlib.BaseChecker):
             result =  checkerlib.CheckResult.FAULTY
         return result
     
+    def check_flag(self, tick):
+        if not self.check_service():
+            return checkerlib.CheckResult.DOWN
+        flag = checkerlib.get_flag(tick)
+        flag_present = self._check_flag_present(flag)
+        if not flag_present:
+            return checkerlib.CheckResult.FLAG_NOT_FOUND
+        return checkerlib.CheckResult.OK
+    
+
      # Private Funcs - Return False if error
     def _add_new_flag(self, ssh_session, flag):
         # Execute the file creation command in the container
@@ -92,3 +102,13 @@ class MyChecker(checkerlib.BaseChecker):
             return True
         else:
             return False
+        
+    @ssh_connect()
+    def _check_flag_present(self, flag):
+        ssh_session = self.client
+        command = f"docker exec injection_web sh -c 'grep {flag} /tmp/flag.txt'"
+        stdin, stdout, stderr = ssh_session.exec_command(command)
+        if stderr.channel.recv_exit_status() != 0:
+            return False
+        output = stdout.read().decode().strip()
+        return flag == output
