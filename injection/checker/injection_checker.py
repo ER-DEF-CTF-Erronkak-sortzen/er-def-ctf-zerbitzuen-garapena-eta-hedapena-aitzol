@@ -57,7 +57,7 @@ class MyChecker(checkerlib.BaseChecker):
      # Private Funcs - Return False if error
     def _add_new_flag(self, ssh_session, flag):
         # Execute the file creation command in the container
-        command = f"docker exec service-webapp-1 sh -c 'echo {flag} >> /tmp/flag.txt'"
+        command = f"docker exec injection_webapp sh -c 'echo {flag} >> /tmp/flag.txt'"
         stdin, stdout, stderr = ssh_session.exec_command(command)
 
         # Check if the command executed successfully

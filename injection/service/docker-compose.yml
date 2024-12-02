@@ -6,7 +6,9 @@ services:
             dockerfile: Dockerfile
         ports:
             - "9009:80"
+        container_name: injection_web
     webapp:
+        container_name: injection_webapp
         build:
             context: ./webapp
             dockerfile: Dockerfile
