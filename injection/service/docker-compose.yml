@@ -1,0 +1,16 @@
+version: '3'
+services:
+    web:
+        build:
+            context: ./web
+            dockerfile: Dockerfile
+        ports:
+            - "9009:80"
+        container_name: injection_web
+    webapp:
+        container_name: injection_webapp
+        build:
+            context: ./webapp
+            dockerfile: Dockerfile
+        ports:
+            - "9008:5000"
