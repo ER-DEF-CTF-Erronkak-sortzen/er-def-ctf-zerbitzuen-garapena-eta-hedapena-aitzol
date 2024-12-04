@@ -50,11 +50,14 @@ class MyChecker(checkerlib.BaseChecker):
         result = checkerlib.CheckResult.OK
         # check if ports are open
         if not self._check_port(self.ip, PORT_WEB) or not self._check_port(self.ip, PORT_WEBAPP):
+            logging.info("Port check failing")
             result = checkerlib.CheckResult.DOWN
         # check if server nginx 1.27.2
         if not self._check_nginx_version():
+            logging.info("Nginx version check failing")
             result =  checkerlib.CheckResult.FAULTY
         if not self._check_functionality_is_running():
+            logging.info("Functionality check failing")
             result = checkerlib.CheckResult.FAULTY
         return result
     
