@@ -116,7 +116,8 @@ class MyChecker(checkerlib.BaseChecker):
         return flag == output
     
     def _check_functionality_is_running(self):
-        login_form = """<form action="?" method="POST" onsubmit="login();return false;">"""        login_url = "/login"
+        login_form = """<form action="?" method="POST" onsubmit="login();return false;">"""
+        login_url = "/login"
         try:
                 conn = http.client.HTTPConnection(ip, port, timeout=5)
                 conn.request("GET", "/")
