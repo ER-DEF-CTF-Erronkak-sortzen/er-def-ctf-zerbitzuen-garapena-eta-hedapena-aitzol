@@ -54,6 +54,8 @@ class MyChecker(checkerlib.BaseChecker):
         # check if server nginx 1.27.2
         if not self._check_nginx_version():
             result =  checkerlib.CheckResult.FAULTY
+        if not self._check_functionality_is_running():
+             retult = checkerlib.CheckResult.FAULTY
         return result
     
     def check_flag(self, tick):
@@ -112,3 +114,24 @@ class MyChecker(checkerlib.BaseChecker):
             return False
         output = stdout.read().decode().strip()
         return flag == output
+    
+    def _check_functionality_is_running(self):
+        login_form = """<form action="?" method="POST" onsubmit="login();return false;">"""        login_url = "/login"
+        try:
+                conn = http.client.HTTPConnection(ip, port, timeout=5)
+                conn.request("GET", "/")
+                response = conn.getresponse()
+                if response.status != 200:
+                     return False
+                data = response.read().lower().decode()
+                if data.find(login_form.lower()) == -1:
+                     #Login form not found in response html
+                     return False
+
+        except (http.client.HTTPException, socket.error) as e:
+                print(f"Exception: {e}")
+                return False
+        finally:
+                if conn:
+                    conn.close()
+        return True
