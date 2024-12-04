@@ -123,7 +123,7 @@ class MyChecker(checkerlib.BaseChecker):
         login_url = "/login"
         try:
                 conn = http.client.HTTPConnection(self.ip, PORT_WEB, timeout=5)
-                conn.request("GET", login_form)
+                conn.request("GET", login_url
                 response = conn.getresponse()
                 if response.status != 200:
                      logging.info("Functionality test: Bad response status")
