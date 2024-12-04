@@ -126,14 +126,17 @@ class MyChecker(checkerlib.BaseChecker):
                 conn.request("GET", "/")
                 response = conn.getresponse()
                 if response.status != 200:
+                     logging.info("Functionality test: Bad response status")
                      return False
                 data = response.read().lower().decode()
                 if data.find(login_form.lower()) == -1:
                      #Login form not found in response html
+                     logging.info("Functionality test: form not found")
                      return False
 
         except (http.client.HTTPException, socket.error) as e:
                 print(f"Exception: {e}")
+                logging.info("Error in request ", e)
                 return False
         finally:
                 if conn:
