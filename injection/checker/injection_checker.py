@@ -136,3 +136,5 @@ class MyChecker(checkerlib.BaseChecker):
                 if conn:
                     conn.close()
         return True
+if __name__ == '__main__':
+    checkerlib.run_check(MyChecker)
