@@ -95,7 +95,7 @@ class MyChecker(checkerlib.BaseChecker):
     @ssh_connect()
     def _check_nginx_version(self):
         ssh_session = self.client
-        command = f"docker exec injection_web sh -c \'nginx -v | grep nginx/1.27.2\'"
+        command = f"docker exec injection_web sh -c 'nginx -v | grep nginx/1.27.2'"
         stdin, stdout, stderr = ssh_session.exec_command(command)
 
         if stdout:
