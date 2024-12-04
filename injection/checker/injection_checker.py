@@ -119,7 +119,7 @@ class MyChecker(checkerlib.BaseChecker):
         login_form = """<form action="?" method="POST" onsubmit="login();return false;">"""
         login_url = "/login"
         try:
-                conn = http.client.HTTPConnection(ip, port, timeout=5)
+                conn = http.client.HTTPConnection(self.ip, PORT_WEB, timeout=5)
                 conn.request("GET", "/")
                 response = conn.getresponse()
                 if response.status != 200:
