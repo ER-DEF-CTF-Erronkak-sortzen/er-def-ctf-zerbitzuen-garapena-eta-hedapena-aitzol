@@ -55,7 +55,7 @@ class MyChecker(checkerlib.BaseChecker):
         if not self._check_nginx_version():
             result =  checkerlib.CheckResult.FAULTY
         if not self._check_functionality_is_running():
-             retult = checkerlib.CheckResult.FAULTY
+            result = checkerlib.CheckResult.FAULTY
         return result
     
     def check_flag(self, tick):
