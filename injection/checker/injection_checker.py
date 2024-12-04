@@ -128,8 +128,8 @@ class MyChecker(checkerlib.BaseChecker):
                 if response.status != 200:
                      logging.info("Functionality test: Bad response status")
                      return False
-                data = response.read().lower().decode()
-                if data.find(login_form.lower()) == -1:
+                data = response.read()
+                if data.lower().decode().find(login_form.lower()) == -1:
                      #Login form not found in response html
                      logging.info("Functionality test: form not found")
                      return False
